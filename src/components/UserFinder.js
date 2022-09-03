@@ -2,6 +2,10 @@
 import { useState, useEffect, Component } from "react";
 //components
 import Users from "./Users";
+import UsersContext from "../store/user-context";
+import ErrorBoundary from "./ErrorBoundary";
+//styles
+import classes from "./UserFinder.module.css";
 
 class UserFinder extends Component
 {
@@ -48,7 +52,9 @@ class UserFinder extends Component
                     onChange={ this.searchChangeHandler.bind( this ) }
                 />
             </div>
-            <Users users={ this.state.filteredUsers } />
+            <ErrorBoundary>
+                <Users users={ this.state.filteredUsers } />
+            </ErrorBoundary>
         </>;
     }
 }
